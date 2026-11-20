@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sunset Cover Studio — GTA-style cover art maker</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true">☀</span>
+    <div>
+      <h1>Sunset Cover Studio</h1>
+      <p>Turn your photo into GTA-style poster cover art. Photos never leave your machine.</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <label class="size-label" for="size">Export size</label>
+    <select id="size">
+      <option value="1080x1080" selected>1080 × 1080 · Square</option>
+      <option value="1080x1350">1080 × 1350 · Portrait</option>
+      <option value="1920x1080">1920 × 1080 · Wide</option>
+    </select>
+    <button id="exportBtn" class="btn primary">Export PNG ↓</button>
+  </div>
+</header>
+
+<main class="layout">
+  <aside class="panel controls" aria-label="Cover controls">
+    <section>
+      <h2>1 · Photos</h2>
+      <p class="hint">Add your own photos, or try a sample. Click a photo, then click a panel slot to place it.</p>
+      <div class="row">
+        <label class="btn file-btn">Add photos…
+          <input id="fileInput" type="file" accept="image/*" multiple hidden>
+        </label>
+        <button id="sampleWoman" class="btn">Sample · Boulevard</button>
+        <button id="sampleMan" class="btn">Sample · Neon Night</button>
+      </div>
+      <div id="pool" class="pool" aria-label="Photo pool"></div>
+      <div class="row">
+        <button id="fillAll" class="btn">Fill every panel with the selected photo</button>
+        <button id="clearPhotos" class="btn quiet">Clear</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>2 · Layout</h2>
+      <div id="layoutPicker" class="picker" role="group" aria-label="Panel layout"></div>
+    </section>
+
+    <section>
+      <h2>3 · Colour grade</h2>
+      <div id="gradePicker" class="picker" role="group" aria-label="Colour grade"></div>
+      <p class="hint">Sunset and neon grades are drawn over your photos — the originals stay untouched.</p>
+    </section>
+
+    <section>
+      <h2>4 · Caption</h2>
+      <label class="field">Big caption
+        <input id="captionInput" type="text" value="SUNSET HEIST" maxlength="24" spellcheck="false">
+      </label>
+      <label class="field">Subline
+        <input id="sublineInput" type="text" value="OCEAN DRIVE · 6 PM" maxlength="40" spellcheck="false">
+      </label>
+      <label class="field">Caption size
+        <input id="captionScale" type="range" min="70" max="130" value="100">
+      </label>
+    </section>
+
+    <section>
+      <h2>5 · Crop the active panel</h2>
+      <p class="hint">Click a panel in the preview to select it, drag to move the photo, scroll or use the slider to zoom.</p>
+      <div id="slotList" class="slots" aria-label="Panel slots"></div>
+      <label class="field">Zoom
+        <input id="zoomSlider" type="range" min="100" max="250" value="100">
+      </label>
+      <div class="row">
+        <button id="resetCrop" class="btn">Reset crop</button>
+      </div>
+    </section>
+
+    <p class="fineprint">Original design. No Rockstar Games logo, artwork, character or font is used.
+    Display type is Anton (SIL OFL), sublines are Archivo Black (SIL OFL). Sample photos are AI-generated fictional people.</p>
+  </aside>
+
+  <section class="panel stage" aria-label="Cover preview">
+    <div class="stage-head">
+      <span id="stageLabel">Live preview · 1080 × 1080</span>
+      <span id="stageHint" class="hint">Drag a photo inside a panel to reposition it</span>
+    </div>
+    <div class="canvas-wrap">
+      <canvas id="preview" width="1080" height="1080"></canvas>
+    </div>
+    <div class="stage-foot">
+      <button id="exportBtn2" class="btn primary">Export PNG ↓</button>
+      <span id="status" class="hint" role="status">Ready — add a photo to begin.</span>
+    </div>
+  </section>
+</main>
+
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
